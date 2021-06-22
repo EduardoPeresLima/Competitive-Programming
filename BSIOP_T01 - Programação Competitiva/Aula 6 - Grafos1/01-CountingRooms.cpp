@@ -8,9 +8,11 @@ vector<string> g;
 vector<vector<bool>> passei;
 int dx[] = {0,0,1,-1}, dy[] = {1,-1,0,0};
 int n, m;
+
 bool out(int i, int j){
     return i<0 || i>=n || j<0 || j>=m;
 }
+
 void bfs(int i, int j){
     queue<pair<int,int>> q;
     q.emplace(i,j);
