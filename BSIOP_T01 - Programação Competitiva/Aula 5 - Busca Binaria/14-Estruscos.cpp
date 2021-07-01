@@ -10,7 +10,7 @@ int main(){
         ll n; scanf("%lld",&n);
         ll lo = 1, hi = 2e9+7, mid;
         while(lo < hi){
-            mid = lo + ((hi-lo)>>1);
+            mid = lo + ((hi-lo) >> 1);
             if(mid * (mid+1) > 2*n)hi = mid;
             else lo = mid+1;
         }
