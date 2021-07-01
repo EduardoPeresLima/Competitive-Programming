@@ -12,7 +12,7 @@ bool f(ll x){
 ll bb(){
     ll lo = 1, mid, hi = LLONG_MAX;
     for(int i=0;i<100;i++){
-        mid = lo + ((hi-lo)>>1);
+        mid = lo + ((hi-lo) >> 1);
         if(f(mid))lo = mid+1;
         else hi = mid;
     }
