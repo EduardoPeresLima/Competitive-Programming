@@ -7,7 +7,7 @@ bool f(){
     
 }
 
-void bb(){
+int bb(){
 
 }
 
