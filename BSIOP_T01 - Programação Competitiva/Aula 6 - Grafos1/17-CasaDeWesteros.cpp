@@ -8,6 +8,7 @@ inline void reads(string& x){char kk[2004]; scanf("%s",kk); x = kk;}
 int main(){
     int n; scanf("%d",&n);
     graph g(n); for(string &s : g)reads(s);
+    
     bool can = true;
     vector<int> ans, passei(n);
     for(int i=0;i<n;i++){
