@@ -1,5 +1,24 @@
 //Link da questao
 //https://cses.fi/problemset/task/1194
+
+/*
+IDEIA  
+    Calcular o tempo que leva para o JOGADOR chegar a cada ponto do labirinto -> tMe
+    Calcular o MENOR tempo que leva para os MONSTROS chegarem a cada ponto do labirinto -> tMonster
+    Calcular o "pai" de cada ponto, por exemplo, se na BFS o JOGADOR andou do ponto {1,2} para {1,3},
+    entao pai[1][3] = {1,2}
+
+    Andar pelas bordas e verificar se o JOGADOR alcanca a o ponto e se o tempo de chegada dele eh MENOR que o dos monstros,
+        caso NAO haja nenhum ponto das bordas com essas caracteristicas -> NO
+        caso haja -> YES e recuperar a resposta, usando o vetor "pai" 
+            -> verifica o delta pai[i][j] - {i,j} e analisa se foi "LRDU", add na resposta.
+            -> porem, como fazemos do fim para o inicio, precisamos reverter a string p encontrar a resposta.  
+
+Obs:
+Para calcular o tempo dos monstros a BFS inicia com **todos os pontos iniciais dos monstros na fila** em vez de um ponto por vez,
+e seus tempos sendo 0, dai eh bfs normal. Isso economiza tempo e espaco, visto que nao sao precisos X BFS's, apenas uma
+(sendo X = quantidade de monstros)s
+*/
 #include<bits/stdc++.h>
 using namespace std; 
 const int INF = 1e9+7;
@@ -15,7 +34,7 @@ bool out(int i, int j){
     return i<0 || i>=n || j<0 || j>=m;
 }
 
-void bfs(bool isMonster, vector<pair<int,int>> inicio){
+void bfs(bool isMonster, vector<pair<int,int>> inicio){//Calcula o tempo que jogador e mosntro chegam aos pontos
     vector<vector<bool>> passei(n,vector<bool>(m));
     queue<pair<int,int>> q;
     int i, j;
@@ -44,9 +63,9 @@ void bfs(bool isMonster, vector<pair<int,int>> inicio){
     }
 }
 bool canEndHere(int i, int j){
-    return tMe[i][j] != INF && tMe[i][j] < tMonster[i][j];
+    return tMe[i][j] != INF && tMe[i][j] < tMonster[i][j];//JOGADOR alcanca o ponto e chega antes dos monstros
 }
-pair<int,int> getEndPos(){
+pair<int,int> getEndPos(){ //Encontra um ponto das bordas que o JOGADOR alcanca antes dos monstros
     for(int i=0;i<n;i++){
         if(canEndHere(i,0))return {i,0};
         else if(canEndHere(i,m-1)) return {i,m-1};
@@ -57,7 +76,7 @@ pair<int,int> getEndPos(){
     }
     return {-1,-1};
 }
-string recover(pair<int,int> ini, pair<int,int> fim){
+string recover(pair<int,int> ini, pair<int,int> fim){// recuperar resposta
     string ans;
     pair<int,int> before, delta;
     while(fim != ini){
