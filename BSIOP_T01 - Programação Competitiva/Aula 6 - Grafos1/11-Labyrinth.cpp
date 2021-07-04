@@ -36,6 +36,7 @@ int main(){
 
     bool can = true;
     pair<int,int> ini, fim;
+
     //Salva os pontos inicial e final, e ja verifica na bfs se eh possivel alcancar
     for(int i=0;i<n;i++)
         for(int j=0;j<m;j++){
@@ -45,6 +46,7 @@ int main(){
             } 
             else if(g[i][j] == 'B') fim = {i,j};
         }
+    
     if(can){ //Se for possivel alcancar
         printf("YES\n");
         /*
