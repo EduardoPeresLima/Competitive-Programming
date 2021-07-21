@@ -12,6 +12,7 @@ int main(){
     vector<int> dp(n,1e9);
     dp[0] = 0;
     for(int i=1;i<n;i++){
+        //Estando no passo i, eu tento ir pra [i-1 .. i-k], o que tiver menor custo total eu escolho
         for(int j=max(i-k,0);j<i;j++){
             dp[i] = min(dp[i],dp[j] + abs(v[i]-v[j]));
         }
