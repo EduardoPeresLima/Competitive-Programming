@@ -13,6 +13,7 @@ int main(){
     dp[0] = 0;
     dp[1] = abs(v[1]-v[0]);
     for(int i=2;i<n;i++){
+        //Estando no passo i, eu tento ir pra i-1 ou i-2, o que tiver menor custo total eu escolho
         dp[i] = min(dp[i-1] + abs(v[i]-v[i-1]), dp[i-2] + abs(v[i]-v[i-2]));
     }
     printf("%d\n",dp[n-1]);
