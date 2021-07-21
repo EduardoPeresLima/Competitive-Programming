@@ -14,13 +14,19 @@ int main(){
         vector<int> a(n); for(int &x : a)scanf("%d",&x);
         int maior = v.back();
         v.emplace_back(MOD);
-        vector<int> dp(maior+1);
-        for(int i=0,j=1;j<=maior;){
-            if(j<v[i]){
+        //Pra cada posicao da estrada, eu vejo o melhor custo até ali
+        vector<int> dp(maior+1); 
+        for(int i=0,j=1;j<=maior;){//Two-Pointers
+            if(j < v[i]){
+                //Nesse caso, tem 2 opcoes -> nao tem radar nessa posicao, ou essa posicao eh do radar anterior (i-1)
+                //Se nao tiver radar aqui, ent dp[j] = dp[j-1]
+                //Se tiver o radar anterior aqui, eu assumi que ele era melhor resposta, mas pode ser que nao seja, daí TALVEZ dp[j-1] seja melhor pra esse caso
+                //De qualquer forma, um max() resolve o problema
                 dp[j] = max(dp[j],dp[j-1]);
                 j++;
             }
             else{
+                //Se aqui tem um radar, eu digo que a resposta vai ser escolhendo esse radar (tem uma observação no if acima, ja que isso nao necessariamente eh vdd)
                 dp[j] = max(dp[j],dp[max(0,j-k)]+a[i]);
                 i++;
             }
