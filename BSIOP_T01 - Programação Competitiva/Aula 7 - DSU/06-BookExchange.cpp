@@ -1,5 +1,5 @@
 //Link da questao
-//
+//https://codeforces.com/contest/1249/problem/B2
 #include<iostream>
 #include<vector>
 #include<numeric> //iota
