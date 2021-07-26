@@ -1,9 +1,9 @@
 //Link da questao
 //
-#include<bits/stdc++.h>
+#include<iostream>
 using namespace std;
-typedef long long       ll;
 const int MOD = ((int)1e9+7);
+typedef long long       ll;
 
 int main(){
     ios_base::sync_with_stdio(0);
